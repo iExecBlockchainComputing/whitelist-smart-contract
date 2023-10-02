@@ -30,12 +30,6 @@ steps:
     image: node:18.12.1
     commands:
       - npm run test
-
-  - name: dry-deployment smart-contract
-    image: node:18.12.1
-    commands:
-      - npm run deploy
-      - cat .smart-contract-address
 ---
 # deploy smart contract in prod or dev
 kind: pipeline
