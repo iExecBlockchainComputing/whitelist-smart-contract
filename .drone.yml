@@ -1,6 +1,6 @@
 kind: pipeline
 type: docker
-name: default
+name: smart-contract-default
 
 trigger:
   event:
@@ -8,15 +8,98 @@ trigger:
       - promote
 
 steps:
-  - name: install
-    image: node:18
+  - name: install deps
+    image: node:18.12.1
     pull: always
     commands:
       - node -v
       - npm -v
       - npm ci
 
-  - name: test
-    image: node:18
+  - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
+  - name: test smart contracts
+    image: node:18.12.1
     commands:
       - npm run test
+
+  - name: dry-deployment smart-contract
+    image: node:18.12.1
+    commands:
+      - npm run deploy
+      - cat .smart-contract-address
+---
+# deploy smart contract in prod or dev
+kind: pipeline
+type: docker
+name: deploy smart contract
+
+trigger:
+  event:
+    - promote
+  target:
+    - smart-contract-dev
+    - smart-contract-production
+  branch:
+    - develop
+    - main
+
+steps:
+  - name: install deps
+    image: node:18.12.1
+    pull: always
+    commands:
+      - node -v
+      - npm -v
+      - npm ci
+
+  - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
+  - name: test smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run test
+
+  - name: smart-contract dev deployment
+    image: node:18.12.1
+    environment:
+      WALLET_PRIVATE_KEY:
+        from_secret: deployer-dev-privatekey
+    commands:
+      - npm run deploy
+      - cat .smart-contract-address
+    when:
+      target:
+        - smart-contract-dev
+      branch:
+        - develop
+
+  - name: smart-contract prod deployment
+    image: node:18.12.1
+    environment:
+      WALLET_PRIVATE_KEY:
+        from_secret: deployer-prod-privatekey
+    commands:
+      - npm run deploy
+      - cat .smart-contract-address
+    when:
+      target:
+        - smart-contract-production
+      branch:
+        - main
