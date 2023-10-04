@@ -99,7 +99,7 @@ steps:
 # pipeline to add ressource to whitelist smart contract
 kind: pipeline
 type: docker
-name: add-ressource
+name: add-ressource-to-whitelist
 
 trigger:
   event:
@@ -112,37 +112,36 @@ trigger:
     - main
 
 steps:
-  steps:
-    - name: install deps
-      image: node:18.12.1
-      pull: always
-      commands:
-        - node -v
-        - npm -v
-        - npm ci
+  - name: install deps
+    image: node:18.12.1
+    pull: always
+    commands:
+      - node -v
+      - npm -v
+      - npm ci
 
-    - name: check format
-      image: node:18.12.1
-      commands:
-        - npm run check-format
+  - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
 
-    - name: compile smart contracts
-      image: node:18.12.1
-      commands:
-        - npm run compile
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
 
-    - name: test smart contracts
-      image: node:18.12.1
-      commands:
-        - npm run test
+  - name: test smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run test
 
-    - name: add ressource to whitelist
-      image: node:18.12.1
-      params:
-        - CONTRACT_ADDRESS
-        - ADDRESS_TO_ADD
-      environment:
-        WALLET_PRIVATE_KEY:
-          from_secret: deployer-dev-privatekey
-      commands:
-        - npm run addRessourceToWhitelist
+  - name: add ressource to whitelist
+    image: node:18.12.1
+    params:
+      - CONTRACT_ADDRESS
+      - ADDRESS_TO_ADD
+    environment:
+      WALLET_PRIVATE_KEY:
+        from_secret: deployer-dev-privatekey
+    commands:
+      - npm run addRessourceToWhitelist
