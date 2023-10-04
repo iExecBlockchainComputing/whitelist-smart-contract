@@ -77,7 +77,6 @@ steps:
         from_secret: deployer-dev-privatekey
     commands:
       - npm run deploy
-      - cat .smart-contract-address
     when:
       target:
         - smart-contract-dev
@@ -91,9 +90,59 @@ steps:
         from_secret: deployer-prod-privatekey
     commands:
       - npm run deploy
-      - cat .smart-contract-address
     when:
       target:
         - smart-contract-production
       branch:
         - main
+---
+# pipeline to add ressource to whitelist smart contract
+kind: pipeline
+type: docker
+name: add-ressource
+
+trigger:
+  event:
+    - promote
+  target:
+    - add-ressource-to-whitelist-dev
+    - add-ressource-to-whitelist-prod
+  branch:
+    - develop
+    - main
+
+steps:
+  steps:
+    - name: install deps
+      image: node:18.12.1
+      pull: always
+      commands:
+        - node -v
+        - npm -v
+        - npm ci
+
+    - name: check format
+      image: node:18.12.1
+      commands:
+        - npm run check-format
+
+    - name: compile smart contracts
+      image: node:18.12.1
+      commands:
+        - npm run compile
+
+    - name: test smart contracts
+      image: node:18.12.1
+      commands:
+        - npm run test
+
+    - name: add ressource to whitelist
+      image: node:18.12.1
+      params:
+        - CONTRACT_ADDRESS
+        - ADDRESS_TO_ADD
+      environment:
+        WALLET_PRIVATE_KEY:
+          from_secret: deployer-dev-privatekey
+      commands:
+        - npm run addRessourceToWhitelist
