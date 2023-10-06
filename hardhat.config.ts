@@ -1,6 +1,6 @@
 import '@nomicfoundation/hardhat-toolbox';
-import 'hardhat-deploy';
 import { HardhatUserConfig } from 'hardhat/config';
+
 const { WALLET_PRIVATE_KEY } = process.env;
 
 const config: HardhatUserConfig = {
@@ -17,12 +17,6 @@ const config: HardhatUserConfig = {
       gasPrice: 0,
     },
   },
-  namedAccounts: {
-    deployer: {
-      default: 0,
-    },
-  },
-
   //to verify contract on Blockscout
   etherscan: {
     apiKey: {
