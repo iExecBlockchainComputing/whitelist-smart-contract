@@ -13,9 +13,7 @@
     "transferOwnership": "hardhat run scripts/transferOwnership.ts --network bellecour",
     "verify": "hardhat verify",
     "clean": "hardhat clean",
-    "lint": "eslint **/*.ts",
-    "lint:fix": "eslint **/*.ts --fix",
-    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts",
     "format": "prettier --plugin=./node_modules/prettier-plugin-solidity/src/index.js --write \"{scripts,test,contracts}/**/*.{ts,sol}\"",
     "check-format": "prettier --plugin=./node_modules/prettier-plugin-solidity/src/index.js --check \"{scripts,test,contracts}/**/*.{ts,sol}\""
   },
