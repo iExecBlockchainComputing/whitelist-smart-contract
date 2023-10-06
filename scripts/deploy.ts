@@ -7,12 +7,9 @@ async function main() {
   // pass the registry instance to the deploy method
   const IExecWhitelist = await ethers.getContractFactory('IExecWhitelist');
   const iExecWhitelist = await IExecWhitelist.deploy();
-  const receipt = await iExecWhitelist.deployed();
-
-  console.log(
-    'Gas used: ',
-    (await receipt.deployTransaction.wait()).gasUsed.toString()
-  );
+  const deploymentTransaction = await iExecWhitelist.deploymentTransaction();
+  const receipt = deploymentTransaction?.wait();
+  console.log('receipt', receipt);
   // save the smart contract address in `.smart-contract-address` file for next usages
   await saveSmartContractAddress(iExecWhitelist.address.toString());
 

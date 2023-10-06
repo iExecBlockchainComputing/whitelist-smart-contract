@@ -8,7 +8,7 @@ describe('IExecWhitelist', function () {
     const IExecWhitelistFactory =
       await ethers.getContractFactory('IExecWhitelist');
     const iExecWhitelist = await IExecWhitelistFactory.deploy();
-    await iExecWhitelist.deploymentTransaction();
+    await iExecWhitelist.deploymentTransaction()?.wait();
     return { iExecWhitelist, owner, addr1, addr2 };
   }
   describe('Whitelisting', () => {
