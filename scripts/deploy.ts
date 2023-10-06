@@ -4,7 +4,6 @@ async function main() {
   console.log('Starting deployment...');
   const [deployer] = await ethers.getSigners();
   console.log('Deploying contracts with the account:', deployer.address);
-  console.log('Account balance:', (await deployer.getBalance()).toString());
   // pass the registry instance to the deploy method
   const IExecWhitelist = await ethers.getContractFactory('IExecWhitelist');
   const iExecWhitelist = await IExecWhitelist.deploy();
