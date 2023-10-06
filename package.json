@@ -3,7 +3,6 @@
   "version": "0.0.1",
   "description": "Whitelist smart contract to allow developers to not resign a sell order every time there's a new web3mail dapp being deployed.",
   "main": "index.ts",
-  
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",
@@ -11,7 +10,7 @@
     "deploy": "hardhat run scripts/deploy.ts --network bellecour",
     "addRessourceToWhitelist": "hardhat run scripts/addRessourceToWhitelist.ts --network bellecour",
     "removeRessourceFromWhitelist": "hardhat run scripts/removeRessourceFromWhitelist.ts --network bellecour",
-    "transferOwnership": "hardhat run scripts/transferOwnership.ts --network bellecour", 
+    "transferOwnership": "hardhat run scripts/transferOwnership.ts --network bellecour",
     "verify": "hardhat verify",
     "clean": "hardhat clean",
     "lint": "eslint **/*.ts",
