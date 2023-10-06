@@ -8,8 +8,8 @@ async function main() {
   const IExecWhitelist = await ethers.getContractFactory('IExecWhitelist');
   const iExecWhitelist = await IExecWhitelist.deploy();
   const deploymentTransaction = await iExecWhitelist.deploymentTransaction();
-  const receipt = deploymentTransaction?.wait();
-  console.log('receipt', receipt);
+  const receipt = await deploymentTransaction?.wait();
+  console.log('Gas used: ', receipt?.gasUsed.toString());
   // save the smart contract address in `.smart-contract-address` file for next usages
   await saveSmartContractAddress(iExecWhitelist.address.toString());
 
