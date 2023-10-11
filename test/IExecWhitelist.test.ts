@@ -1,6 +1,7 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
+
 describe('IExecWhitelist', function () {
   async function deploySCFixture() {
     const [owner, addr1, addr2] = await ethers.getSigners();
@@ -11,6 +12,7 @@ describe('IExecWhitelist', function () {
     await iExecWhitelist.deploymentTransaction()?.wait();
     return { iExecWhitelist, owner, addr1, addr2 };
   }
+
   describe('Whitelisting', () => {
     it('should allow the owner to add a dapp address to the iExecWhitelist', async () => {
       const { iExecWhitelist, owner, addr1 } =
@@ -61,6 +63,7 @@ describe('IExecWhitelist', function () {
       ).to.be.revertedWith('Ownable: caller is not the owner');
     });
   });
+  
   describe('Events', function () {
     it('should emit KeyPurposeUpdate event when a dapp address is added', async () => {
       const { iExecWhitelist, owner, addr1 } =
