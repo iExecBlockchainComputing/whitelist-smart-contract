@@ -63,7 +63,7 @@ describe('IExecWhitelist', function () {
       ).to.be.revertedWith('Ownable: caller is not the owner');
     });
   });
-  
+
   describe('Events', function () {
     it('should emit KeyPurposeUpdate event when a dapp address is added', async () => {
       const { iExecWhitelist, owner, addr1 } =
