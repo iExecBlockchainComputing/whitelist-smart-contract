@@ -10,12 +10,17 @@
     "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
-  "rules": {
-    "import/no-extraneous-dependencies": [
-      "error",
-      {
-        "devDependencies": true
+  "overrides": [
+    {
+      "files": ["scripts/**/*.ts", "test/**/*.ts", "hardhat.config.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          {
+            "devDependencies": true
+          }
+        ]
       }
-    ]
-  }
+    }
+  ]
 }
