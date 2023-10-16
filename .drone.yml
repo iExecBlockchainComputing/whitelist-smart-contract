@@ -21,6 +21,11 @@ steps:
     commands:
       - npm run check-format
 
+  - name: check lint
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
   - name: compile smart contracts
     image: node:18.12.1
     commands:
@@ -56,6 +61,11 @@ steps:
       - npm ci
 
   - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
+  - name: check lint
     image: node:18.12.1
     commands:
       - npm run check-format
@@ -145,6 +155,11 @@ steps:
     commands:
       - npm run check-format
 
+  - name: check lint
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
   - name: compile smart contracts
     image: node:18.12.1
     commands:
@@ -216,6 +231,11 @@ steps:
     commands:
       - npm run check-format
 
+  - name: check lint
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
   - name: compile smart contracts
     image: node:18.12.1
     commands:
@@ -283,6 +303,11 @@ steps:
       - npm ci
 
   - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
+  - name: check lint
     image: node:18.12.1
     commands:
       - npm run check-format
