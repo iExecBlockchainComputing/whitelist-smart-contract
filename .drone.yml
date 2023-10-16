@@ -24,7 +24,7 @@ steps:
   - name: check lint
     image: node:18.12.1
     commands:
-      - npm run check-format
+      - npm run lint
 
   - name: compile smart contracts
     image: node:18.12.1
