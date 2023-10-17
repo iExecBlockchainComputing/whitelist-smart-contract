@@ -43,6 +43,7 @@ transfer the ownership of an `IExecWhitelist` contract deployed on bellecour to 
 
 Required environment variables:
 
+- `CONTRACT_ADDRESS`: `IExecWhitelist` smart contract address
 - `NEW_OWNER_ADDRESS`: new owner address
 - `WALLET_PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
 
