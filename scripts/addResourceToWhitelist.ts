@@ -1,5 +1,5 @@
 import { ethers } from 'hardhat';
-import { IExecWhitelist } from '../typechain-types';
+import { IExecWhitelist } from '../typechain-types/contracts/IExecWhitelist.js';
 
 async function main() {
   const { CONTRACT_ADDRESS, ADDRESS_TO_ADD } = process.env;
