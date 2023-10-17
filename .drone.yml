@@ -109,7 +109,7 @@ steps:
   - name: verify dev contract
     image: node:18.12.1
     commands:
-      - npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
+      - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
       target:
         - smart-contract-dev
@@ -119,7 +119,7 @@ steps:
   - name: verify prod contract
     image: node:18.12.1
     commands:
-      - npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
+      - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
       target:
         - smart-contract-production
