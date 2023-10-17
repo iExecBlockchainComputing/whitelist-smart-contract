@@ -23,7 +23,7 @@ async function main() {
     CONTRACT_ADDRESS
   ) as IExecWhitelist;
 
-  // Call the remResourceToWhitelist function
+  // Call the transferOwnership function
   const tx = await whitelist.transferOwnership(NEW_OWNER_ADDRESS);
 
   // Wait for the transaction to be mined

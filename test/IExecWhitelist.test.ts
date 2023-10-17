@@ -43,7 +43,7 @@ describe('IExecWhitelist', function () {
         .addResourceToWhitelist(await addr1.getAddress());
       await iExecWhitelist
         .connect(owner)
-        .remResourceToWhitelist(await addr1.getAddress());
+        .removeResourceFromWhitelist(await addr1.getAddress());
       const paddedAddress =
         '0x' + '00'.repeat(12) + (await addr1.getAddress()).slice(2);
       expect(
@@ -59,7 +59,7 @@ describe('IExecWhitelist', function () {
       await expect(
         iExecWhitelist
           .connect(addr1)
-          .remResourceToWhitelist(await addr1.getAddress())
+          .removeResourceFromWhitelist(await addr1.getAddress())
       ).to.be.revertedWith('Ownable: caller is not the owner');
     });
   });
@@ -89,7 +89,7 @@ describe('IExecWhitelist', function () {
       await expect(
         iExecWhitelist
           .connect(owner)
-          .remResourceToWhitelist(await addr1.getAddress())
+          .removeResourceFromWhitelist(await addr1.getAddress())
       )
         .to.emit(iExecWhitelist, 'KeyPurposeUpdate')
         .withArgs(ethers.hexlify(paddedAddress), 4, false);

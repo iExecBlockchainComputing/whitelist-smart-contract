@@ -21,8 +21,8 @@ async function main() {
     signer
   ) as IExecWhitelist;
 
-  // Call the remResourceToWhitelist function
-  const tx = await whitelist.remResourceToWhitelist(ADDRESS_TO_REMOVE);
+  // Call the removeResourceFromWhitelist function
+  const tx = await whitelist.removeResourceFromWhitelist(ADDRESS_TO_REMOVE);
 
   // Wait for the transaction to be mined
   await tx.wait();
