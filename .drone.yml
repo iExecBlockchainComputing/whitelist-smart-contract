@@ -16,20 +16,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: check lint
+  - name: lint
     image: node:18.12.1
     commands:
       - npm run lint
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
 
   - name: test smart contracts
     image: node:18.12.1
@@ -60,20 +60,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: check lint
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run check-format
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
@@ -150,20 +150,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: check lint
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run check-format
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
@@ -226,20 +226,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: check lint
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run check-format
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
@@ -302,20 +302,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: check lint
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run check-format
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
