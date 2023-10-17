@@ -322,7 +322,7 @@ steps:
     commands:
       - npm run test
 
-  - name: transfer ownsership dev
+  - name: transfer ownership dev
     image: node:18.12.1
     params:
       - NEW_OWNER_ADDRESS
@@ -337,7 +337,7 @@ steps:
       branch:
         - develop
 
-  - name: transfer ownsership prod
+  - name: transfer ownership prod
     image: node:18.12.1
     params:
       - NEW_OWNER_ADDRESS
