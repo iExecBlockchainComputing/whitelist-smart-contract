@@ -53,12 +53,12 @@ contract IExecWhitelist is Ownable {
     }
 
     // inherit onlyOwner from setKeyPurpose
-    function addRessourceToWhitelist(address ressource) public {
-        setKeyPurpose(addrToKey(ressource), GROUPMEMBER_PURPOSE, true);
+    function addResourceToWhitelist(address resource) public {
+        setKeyPurpose(addrToKey(resource), GROUPMEMBER_PURPOSE, true);
     }
 
     // inherit onlyOwner from setKeyPurpose
-    function remRessourceToWhitelist(address ressource) public {
-        setKeyPurpose(addrToKey(ressource), GROUPMEMBER_PURPOSE, false);
+    function remResourceToWhitelist(address resource) public {
+        setKeyPurpose(addrToKey(resource), GROUPMEMBER_PURPOSE, false);
     }
 }

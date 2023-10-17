@@ -11,8 +11,8 @@ async function main() {
     signer
   );
 
-  // Call the addRessourceToWhitelist function
-  const tx = await whitelist.addRessourceToWhitelist(ADDRESS_TO_ADD);
+  // Call the addResourceToWhitelist function
+  const tx = await whitelist.addResourceToWhitelist(ADDRESS_TO_ADD);
 
   // Wait for the transaction to be mined
   await tx.wait();

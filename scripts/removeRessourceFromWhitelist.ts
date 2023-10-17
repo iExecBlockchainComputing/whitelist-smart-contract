@@ -12,8 +12,8 @@ async function main() {
     signer
   );
 
-  // Call the remRessourceToWhitelist function
-  const tx = await whitelist.remRessourceToWhitelist(ADDRESS_TO_REMOVE);
+  // Call the remResourceToWhitelist function
+  const tx = await whitelist.remResourceToWhitelist(ADDRESS_TO_REMOVE);
 
   // Wait for the transaction to be mined
   await tx.wait();

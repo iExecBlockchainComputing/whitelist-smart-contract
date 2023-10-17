@@ -12,7 +12,7 @@ async function main() {
     signer
   );
 
-  // Call the remRessourceToWhitelist function
+  // Call the remResourceToWhitelist function
   const tx = await whitelist.transferOwnership(NEW_OWNER_ADDRESS);
 
   // Wait for the transaction to be mined
