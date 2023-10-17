@@ -325,6 +325,7 @@ steps:
   - name: transfer ownership dev
     image: node:18.12.1
     params:
+      - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
     environment:
       WALLET_PRIVATE_KEY:
@@ -340,6 +341,7 @@ steps:
   - name: transfer ownership prod
     image: node:18.12.1
     params:
+      - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
     environment:
       WALLET_PRIVATE_KEY:
