@@ -31,6 +31,12 @@ Required environment variables:
 npm run deploy
 ```
 
+> NB: you may want to verify the deployed contract code on the block explorer
+>
+> ```bash
+> npm run verify -- --network bellecour $(cat .smart-contract-address)
+> ```
+
 ### transferOwnership
 
 transfer the ownership of a whitelist contract deployed on bellecour to a new owner
