@@ -1,16 +1,27 @@
 import { ethers } from 'hardhat';
+import { IExecWhitelist } from '../typechain-types';
 
 async function main() {
   const { CONTRACT_ADDRESS, NEW_OWNER_ADDRESS } = process.env;
+
+  if (!CONTRACT_ADDRESS) {
+    throw Error('missing env CONTRACT_ADDRESS');
+  }
+  if (!NEW_OWNER_ADDRESS) {
+    throw Error('missing env NEW_OWNER_ADDRESS');
+  }
 
   // Fetch the signer. Here, we're using the default signer (account[0]), but you can change this.
   const [signer] = await ethers.getSigners();
 
   // Get a contract instance
-  const IExecWhitelist = await ethers.getContractFactory('IExecWhitelist');
-  const whitelist = IExecWhitelist.attach(CONTRACT_ADDRESS as string).connect(
+  const IExecWhitelistFactory = await ethers.getContractFactory(
+    'IExecWhitelist',
     signer
   );
+  const whitelist = IExecWhitelistFactory.attach(
+    CONTRACT_ADDRESS
+  ) as IExecWhitelist;
 
   // Call the remResourceToWhitelist function
   const tx = await whitelist.transferOwnership(NEW_OWNER_ADDRESS);
