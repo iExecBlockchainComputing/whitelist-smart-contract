@@ -1,5 +1,6 @@
 import { ethers } from 'hardhat';
 import { saveSmartContractAddress } from '../utils/utils';
+
 async function main() {
   console.log('Starting deployment...');
   const [deployer] = await ethers.getSigners();

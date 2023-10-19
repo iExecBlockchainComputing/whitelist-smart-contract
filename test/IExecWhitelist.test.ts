@@ -1,6 +1,7 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
+
 describe('IExecWhitelist', function () {
   async function deploySCFixture() {
     const [owner, addr1, addr2] = await ethers.getSigners();
@@ -11,13 +12,14 @@ describe('IExecWhitelist', function () {
     await iExecWhitelist.deploymentTransaction()?.wait();
     return { iExecWhitelist, owner, addr1, addr2 };
   }
+
   describe('Whitelisting', () => {
     it('should allow the owner to add a dapp address to the iExecWhitelist', async () => {
       const { iExecWhitelist, owner, addr1 } =
         await loadFixture(deploySCFixture);
       await iExecWhitelist
         .connect(owner)
-        .addRessourceToWhitelist(await addr1.getAddress());
+        .addResourceToWhitelist(await addr1.getAddress());
       const paddedAddress =
         '0x' + '00'.repeat(12) + (await addr1.getAddress()).slice(2);
       expect(
@@ -30,7 +32,7 @@ describe('IExecWhitelist', function () {
       await expect(
         iExecWhitelist
           .connect(addr1)
-          .addRessourceToWhitelist(await addr2.getAddress())
+          .addResourceToWhitelist(await addr2.getAddress())
       ).to.be.revertedWith('Ownable: caller is not the owner');
     });
     it('should allow the owner to remove a dapp address from the iExecWhitelist', async () => {
@@ -38,10 +40,10 @@ describe('IExecWhitelist', function () {
         await loadFixture(deploySCFixture);
       await iExecWhitelist
         .connect(owner)
-        .addRessourceToWhitelist(await addr1.getAddress());
+        .addResourceToWhitelist(await addr1.getAddress());
       await iExecWhitelist
         .connect(owner)
-        .remRessourceToWhitelist(await addr1.getAddress());
+        .removeResourceFromWhitelist(await addr1.getAddress());
       const paddedAddress =
         '0x' + '00'.repeat(12) + (await addr1.getAddress()).slice(2);
       expect(
@@ -53,14 +55,15 @@ describe('IExecWhitelist', function () {
         await loadFixture(deploySCFixture);
       await iExecWhitelist
         .connect(owner)
-        .addRessourceToWhitelist(await addr1.getAddress());
+        .addResourceToWhitelist(await addr1.getAddress());
       await expect(
         iExecWhitelist
           .connect(addr1)
-          .remRessourceToWhitelist(await addr1.getAddress())
+          .removeResourceFromWhitelist(await addr1.getAddress())
       ).to.be.revertedWith('Ownable: caller is not the owner');
     });
   });
+
   describe('Events', function () {
     it('should emit KeyPurposeUpdate event when a dapp address is added', async () => {
       const { iExecWhitelist, owner, addr1 } =
@@ -70,7 +73,7 @@ describe('IExecWhitelist', function () {
       await expect(
         iExecWhitelist
           .connect(owner)
-          .addRessourceToWhitelist(await addr1.getAddress())
+          .addResourceToWhitelist(await addr1.getAddress())
       )
         .to.emit(iExecWhitelist, 'KeyPurposeUpdate')
         .withArgs(ethers.hexlify(paddedAddress), 4, true);
@@ -82,11 +85,11 @@ describe('IExecWhitelist', function () {
         '0x' + '00'.repeat(12) + (await addr1.getAddress()).slice(2);
       await iExecWhitelist
         .connect(owner)
-        .addRessourceToWhitelist(await addr1.getAddress());
+        .addResourceToWhitelist(await addr1.getAddress());
       await expect(
         iExecWhitelist
           .connect(owner)
-          .remRessourceToWhitelist(await addr1.getAddress())
+          .removeResourceFromWhitelist(await addr1.getAddress())
       )
         .to.emit(iExecWhitelist, 'KeyPurposeUpdate')
         .withArgs(ethers.hexlify(paddedAddress), 4, false);

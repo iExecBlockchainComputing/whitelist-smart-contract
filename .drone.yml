@@ -16,15 +16,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: compile smart contracts
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
@@ -55,15 +60,20 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: compile smart contracts
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
@@ -96,108 +106,37 @@ steps:
       branch:
         - main
 
-  # - name: verify dev contract
-  #   image: node:18.12.1
-  #   commands:
-  #     - npm run verify -- --network bellecour $(cat .smart-contract-address)
-  #   when:
-  #     target:
-  #       - smart-contract-dev
-  #     branch:
-  #       - develop
-
-  # - name: verify prod contract
-  #   image: node:18.12.1
-  #   commands:
-  #     - npm run verify -- --network bellecour $(cat .smart-contract-address)
-  #   when:
-  #     target:
-  #       - smart-contract-production
-  #     branch:
-  #       - main
----
-# pipeline to add ressource to whitelist smart contract
-kind: pipeline
-type: docker
-name: add-ressource-to-whitelist
-
-trigger:
-  event:
-    - promote
-  target:
-    - add-ressource-to-whitelist-dev
-    - add-ressource-to-whitelist-prod
-  branch:
-    - develop
-    - main
-
-steps:
-  - name: install deps
-    image: node:18.12.1
-    pull: always
-    commands:
-      - node -v
-      - npm -v
-      - npm ci
-
-  - name: check format
+  - name: verify dev contract
     image: node:18.12.1
     commands:
-      - npm run check-format
-
-  - name: compile smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run compile
-
-  - name: test smart contracts
-    image: node:18.12.1
-    commands:
-      - npm run test
-
-  - name: add ressource to whitelist dev
-    image: node:18.12.1
-    params:
-      - CONTRACT_ADDRESS
-      - ADDRESS_TO_ADD
-    environment:
-      WALLET_PRIVATE_KEY:
-        from_secret: deployer-dev-privatekey
-    commands:
-      - npm run addRessourceToWhitelist
+      - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
       target:
-        - add-ressource-to-whitelist-dev
+        - smart-contract-dev
       branch:
         - develop
 
-  - name: add ressource to whitelist prod
+  - name: verify prod contract
     image: node:18.12.1
-    params:
-      - CONTRACT_ADDRESS
-      - ADDRESS_TO_ADD
-    environment:
-      WALLET_PRIVATE_KEY:
-        from_secret: deployer-prod-privatekey
     commands:
-      - npm run addRessourceToWhitelist
+      - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
       target:
-        - add-ressource-to-whitelist-prod
+        - smart-contract-production
       branch:
         - main
 ---
-# pipeline to remove ressource from whitelist smart contract
+# pipeline to add resource to whitelist smart contract
 kind: pipeline
 type: docker
-name: remove-ressource-from-whitelist
+name: add-resource-to-whitelist
 
 trigger:
   event:
     - promote
   target:
-    - remove-ressource-from-whitelist-dev
-    - remove-ressource-from-whitelist-prod
+    - add-resource-to-whitelist-dev
+    - add-resource-to-whitelist-prod
   branch:
     - develop
     - main
@@ -211,22 +150,103 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: compile smart contracts
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
     commands:
       - npm run test
 
-  - name: remove ressource from whitelist dev
+  - name: add resource to whitelist dev
+    image: node:18.12.1
+    params:
+      - CONTRACT_ADDRESS
+      - ADDRESS_TO_ADD
+    environment:
+      WALLET_PRIVATE_KEY:
+        from_secret: deployer-dev-privatekey
+    commands:
+      - npm run addResourceToWhitelist
+    when:
+      target:
+        - add-resource-to-whitelist-dev
+      branch:
+        - develop
+
+  - name: add resource to whitelist prod
+    image: node:18.12.1
+    params:
+      - CONTRACT_ADDRESS
+      - ADDRESS_TO_ADD
+    environment:
+      WALLET_PRIVATE_KEY:
+        from_secret: deployer-prod-privatekey
+    commands:
+      - npm run addResourceToWhitelist
+    when:
+      target:
+        - add-resource-to-whitelist-prod
+      branch:
+        - main
+---
+# pipeline to remove resource from whitelist smart contract
+kind: pipeline
+type: docker
+name: remove-resource-from-whitelist
+
+trigger:
+  event:
+    - promote
+  target:
+    - remove-resource-from-whitelist-dev
+    - remove-resource-from-whitelist-prod
+  branch:
+    - develop
+    - main
+
+steps:
+  - name: install deps
+    image: node:18.12.1
+    pull: always
+    commands:
+      - node -v
+      - npm -v
+      - npm ci
+
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
+  - name: check format
+    image: node:18.12.1
+    commands:
+      - npm run check-format
+
+  - name: lint
+    image: node:18.12.1
+    commands:
+      - npm run lint
+
+  - name: test smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run test
+
+  - name: remove resource from whitelist dev
     image: node:18.12.1
     params:
       - CONTRACT_ADDRESS
@@ -235,14 +255,14 @@ steps:
       WALLET_PRIVATE_KEY:
         from_secret: deployer-dev-privatekey
     commands:
-      - npm run removeRessourceFromWhitelist
+      - npm run removeResourceFromWhitelist
     when:
       target:
-        - remove-ressource-from-whitelist-dev
+        - remove-resource-from-whitelist-dev
       branch:
         - develop
 
-  - name: remove ressource from whitelist prod
+  - name: remove resource from whitelist prod
     image: node:18.12.1
     params:
       - CONTRACT_ADDRESS
@@ -251,10 +271,10 @@ steps:
       WALLET_PRIVATE_KEY:
         from_secret: deployer-prod-privatekey
     commands:
-      - npm run removeRessourceFromWhitelist
+      - npm run removeResourceFromWhitelist
     when:
       target:
-        - remove-ressource-from-whitelist-prod
+        - remove-resource-from-whitelist-prod
       branch:
         - main
 ---
@@ -282,24 +302,30 @@ steps:
       - npm -v
       - npm ci
 
+  - name: compile smart contracts
+    image: node:18.12.1
+    commands:
+      - npm run compile
+
   - name: check format
     image: node:18.12.1
     commands:
       - npm run check-format
 
-  - name: compile smart contracts
+  - name: lint
     image: node:18.12.1
     commands:
-      - npm run compile
+      - npm run lint
 
   - name: test smart contracts
     image: node:18.12.1
     commands:
       - npm run test
 
-  - name: transfer ownsership dev
+  - name: transfer ownership dev
     image: node:18.12.1
     params:
+      - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
     environment:
       WALLET_PRIVATE_KEY:
@@ -312,9 +338,10 @@ steps:
       branch:
         - develop
 
-  - name: transfer ownsership prod
+  - name: transfer ownership prod
     image: node:18.12.1
     params:
+      - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
     environment:
       WALLET_PRIVATE_KEY:
