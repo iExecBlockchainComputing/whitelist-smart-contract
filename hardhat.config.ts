@@ -1,20 +1,29 @@
 import '@nomicfoundation/hardhat-toolbox';
 import { HardhatUserConfig } from 'hardhat/config';
+import 'dotenv/config';
 
 const { WALLET_PRIVATE_KEY } = process.env;
+
+const bellecourBase = {
+  chainId: 134,
+  gasPrice: 0,
+  blockGasLimit: 6_700_000,
+  hardfork: 'berlin',
+};
 
 const config: HardhatUserConfig = {
   networks: {
     hardhat: {
+      ...bellecourBase,
       forking: {
         enabled: true,
         url: 'https://bellecour.iex.ec',
       },
     },
     bellecour: {
+      ...bellecourBase,
       url: 'https://bellecour.iex.ec',
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : [],
-      gasPrice: 0,
     },
   },
   //to verify contract on Blockscout
@@ -27,8 +36,8 @@ const config: HardhatUserConfig = {
         network: 'bellecour',
         chainId: 134,
         urls: {
-          apiURL: 'https://blockscout-bellecour.iex.ec/api',
-          browserURL: 'https://blockscout-bellecour.iex.ec',
+          apiURL: 'https://blockscout-v6.bellecour.iex.ec/api',
+          browserURL: 'https://blockscout-v6.bellecour.iex.ec',
         },
       },
     ],
