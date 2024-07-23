@@ -9,7 +9,7 @@ trigger:
 
 steps:
   - name: install deps
-    image: node:18.12.1
+    image: node:18.19
     pull: always
     commands:
       - node -v
@@ -17,22 +17,22 @@ steps:
       - npm ci
 
   - name: compile smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run compile
 
   - name: check format
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run check-format
 
   - name: lint
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run lint
 
   - name: test smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run test
 ---
@@ -53,7 +53,7 @@ trigger:
 
 steps:
   - name: install deps
-    image: node:18.12.1
+    image: node:18.19
     pull: always
     commands:
       - node -v
@@ -61,27 +61,27 @@ steps:
       - npm ci
 
   - name: compile smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run compile
 
   - name: check format
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run check-format
 
   - name: lint
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run lint
 
   - name: test smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run test
 
   - name: smart-contract dev deployment
-    image: node:18.12.1
+    image: node:18.19
     environment:
       WALLET_PRIVATE_KEY:
         from_secret: deployer-dev-privatekey
@@ -94,7 +94,7 @@ steps:
         - develop
 
   - name: smart-contract prod deployment
-    image: node:18.12.1
+    image: node:18.19
     environment:
       WALLET_PRIVATE_KEY:
         from_secret: deployer-prod-privatekey
@@ -107,7 +107,7 @@ steps:
         - main
 
   - name: verify dev contract
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
@@ -117,7 +117,7 @@ steps:
         - develop
 
   - name: verify prod contract
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - timeout 30 npm run verify -- --network bellecour $(cat .smart-contract-address) || echo "verification may have failed, check at https://blockscout-bellecour.iex.ec/address/$(cat .smart-contract-address)/contracts#address-tabs"
     when:
@@ -143,7 +143,7 @@ trigger:
 
 steps:
   - name: install deps
-    image: node:18.12.1
+    image: node:18.19
     pull: always
     commands:
       - node -v
@@ -151,27 +151,27 @@ steps:
       - npm ci
 
   - name: compile smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run compile
 
   - name: check format
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run check-format
 
   - name: lint
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run lint
 
   - name: test smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run test
 
   - name: add resource to whitelist dev
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - ADDRESS_TO_ADD
@@ -187,7 +187,7 @@ steps:
         - develop
 
   - name: add resource to whitelist prod
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - ADDRESS_TO_ADD
@@ -219,7 +219,7 @@ trigger:
 
 steps:
   - name: install deps
-    image: node:18.12.1
+    image: node:18.19
     pull: always
     commands:
       - node -v
@@ -227,27 +227,27 @@ steps:
       - npm ci
 
   - name: compile smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run compile
 
   - name: check format
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run check-format
 
   - name: lint
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run lint
 
   - name: test smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run test
 
   - name: remove resource from whitelist dev
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - ADDRESS_TO_REMOVE
@@ -263,7 +263,7 @@ steps:
         - develop
 
   - name: remove resource from whitelist prod
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - ADDRESS_TO_REMOVE
@@ -295,7 +295,7 @@ trigger:
 
 steps:
   - name: install deps
-    image: node:18.12.1
+    image: node:18.19
     pull: always
     commands:
       - node -v
@@ -303,27 +303,27 @@ steps:
       - npm ci
 
   - name: compile smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run compile
 
   - name: check format
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run check-format
 
   - name: lint
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run lint
 
   - name: test smart contracts
-    image: node:18.12.1
+    image: node:18.19
     commands:
       - npm run test
 
   - name: transfer ownership dev
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
@@ -339,7 +339,7 @@ steps:
         - develop
 
   - name: transfer ownership prod
-    image: node:18.12.1
+    image: node:18.19
     params:
       - CONTRACT_ADDRESS
       - NEW_OWNER_ADDRESS
