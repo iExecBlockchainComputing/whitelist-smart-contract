@@ -2,6 +2,10 @@
 
 ## Next
 
+### Added
+
+- load environment variables from `.env` file
+
 ### Changed
 
 - upgrade dependencies
