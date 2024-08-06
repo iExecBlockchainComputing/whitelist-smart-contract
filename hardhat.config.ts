@@ -49,7 +49,7 @@ const config: HardhatUserConfig = {
         },
       },
       {
-        network: 'bubble-bellecour',
+        network: 'bellecour-bubble',
         chainId: 65535,
         urls: {
           apiURL: 'http://chain.wp-throughput.az1.internal:4000/api',
