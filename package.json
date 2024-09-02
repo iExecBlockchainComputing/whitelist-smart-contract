@@ -40,7 +40,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@iexec/dataprotector-environments": "file:environments",
     "@openzeppelin/contracts": "^4.9.3"
   }
 }
