@@ -25,6 +25,13 @@ const config: HardhatUserConfig = {
       url: 'https://bellecour.iex.ec',
       accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : [],
     },
+    // poco-chain native config
+    'dev-native': {
+      chainId: 65535,
+      url: process.env.RPC_URL ?? 'http://localhost:8545',
+      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : [],
+      gasPrice: 0,
+    },
   },
   //to verify contract on Blockscout
   etherscan: {
