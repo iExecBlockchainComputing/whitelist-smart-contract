@@ -24,6 +24,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: compile smart contracts
+        run: npm run compile
+
       - name: Check Format
         run: npm run check-format
 
