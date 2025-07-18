@@ -1,5 +1,11 @@
 # Changelog
 
+## Next
+
+### Changed
+
+- updated blockscout URL
+
 ## [0.2.1]
 
 ### Added
