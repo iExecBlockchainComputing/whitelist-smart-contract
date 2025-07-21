@@ -1,8 +1,8 @@
 import '@nomicfoundation/hardhat-toolbox';
 import { HardhatUserConfig } from 'hardhat/config';
-import 'dotenv/config';
+import { env } from './config/env';
 
-const { WALLET_PRIVATE_KEY } = process.env;
+const privateKey = env.PRIVATE_KEY;
 
 const bellecourBase = {
   chainId: 134,
@@ -23,13 +23,27 @@ const config: HardhatUserConfig = {
     bellecour: {
       ...bellecourBase,
       url: 'https://bellecour.iex.ec',
-      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : [],
+      accounts: privateKey ? [privateKey] : [],
+    },
+    // Add Fuji as a network
+    avalancheFuji: {
+        url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
+        accounts: privateKey ? [privateKey] : [],
+        blockGasLimit: 8_000_000,
+        chainId: 43113,
+    },
+    // Add Arbitrum Sepolia as a network
+    arbitrumSepolia: {
+        url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
+        accounts: privateKey ? [privateKey] : [],
+        blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
+        chainId: 421614,
     },
     // poco-chain native config
     'dev-native': {
       chainId: 65535,
       url: process.env.RPC_URL ?? 'http://localhost:8545',
-      accounts: WALLET_PRIVATE_KEY ? [WALLET_PRIVATE_KEY] : [],
+      accounts: privateKey ? [privateKey] : [],
       gasPrice: 0,
     },
   },
