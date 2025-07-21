@@ -13,6 +13,13 @@ const envSchema = z.object({
     .or(z.literal('')),
 
   // Contract address (override)
+  WHITELIST_OWNER: z
+    .string()
+    .regex(addressRegex, 'Invalid Ethereum address format')
+    .optional()
+    .or(z.literal('')),
+  
+  // Contract address (override)
   CONTRACT_ADDRESS: z
     .string()
     .regex(addressRegex, 'Invalid Ethereum address format')
