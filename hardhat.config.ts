@@ -2,7 +2,7 @@ import '@nomicfoundation/hardhat-toolbox';
 import { HardhatUserConfig } from 'hardhat/config';
 import { env } from './config/env';
 
-const privateKey = env.WALLET_PRIVATE_KEY;
+const privateKey = env.PRIVATE_KEY;
 
 const bellecourBase = {
   chainId: 134,

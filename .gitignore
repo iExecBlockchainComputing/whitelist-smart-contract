@@ -10,4 +10,5 @@ typechain-types
 cache
 artifacts
 
-.smart-contract-address
+# Deployment files
+**/deployments/chain-31337

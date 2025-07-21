@@ -25,7 +25,7 @@ deploys a `IExecWhitelist` contract on bellecour, stores the deployed address in
 
 Required environment variables:
 
-- `WALLET_PRIVATE_KEY`: deployer private key
+- `PRIVATE_KEY`: deployer private key
 
 ```bash
 npm run deploy
@@ -45,7 +45,7 @@ Required environment variables:
 
 - `CONTRACT_ADDRESS`: `IExecWhitelist` smart contract address
 - `NEW_OWNER_ADDRESS`: new owner address
-- `WALLET_PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
+- `PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
 
 ```bash
 npm run transferOwnership
@@ -59,7 +59,7 @@ Required environment variables:
 
 - `CONTRACT_ADDRESS`: `IExecWhitelist` smart contract address
 - `ADDRESS_TO_ADD`: address to add
-- `WALLET_PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
+- `PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
 
 ```bash
 npm run addResourceToWhitelist
@@ -73,7 +73,7 @@ Required environment variables:
 
 - `CONTRACT_ADDRESS`: `IExecWhitelist` smart contract address
 - `ADDRESS_TO_REMOVE`: address to remove
-- `WALLET_PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
+- `PRIVATE_KEY`: `IExecWhitelist` smart contract owner private key
 
 ```bash
 npm run removeResourceFromWhitelist

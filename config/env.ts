@@ -6,7 +6,7 @@ const privateKeyRegex = /(^|\b)(0x)?[0-9a-fA-F]{64}(\b|$)/;
 
 const envSchema = z.object({
     // Private key of the wallet used for transactions
-    WALLET_PRIVATE_KEY: z
+    PRIVATE_KEY: z
         .string()
         .regex(privateKeyRegex, 'Invalid private key format')
         .optional()
