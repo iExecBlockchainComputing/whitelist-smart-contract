@@ -11,18 +11,6 @@ const bellecourBase = {
   hardfork: 'berlin',
 };
 
-// Avalanche Fuji specific configuration
-const fujiBaseConfig = {
-    blockGasLimit: 8_000_000,
-    chainId: 43113,
-};
-
-// Arbitrum Sepolia specific configuration
-const arbitrumSepoliaBaseConfig = {
-    blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
-    chainId: 421614,
-};
-
 const config: HardhatUserConfig = {
   networks: {
     hardhat: {
@@ -41,13 +29,15 @@ const config: HardhatUserConfig = {
     avalancheFuji: {
         url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
         accounts: privateKey ? [privateKey] : [],
-        ...fujiBaseConfig,
+        blockGasLimit: 8_000_000,
+        chainId: 43113,
     },
     // Add Arbitrum Sepolia as a network
     arbitrumSepolia: {
         url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
         accounts: privateKey ? [privateKey] : [],
-        ...arbitrumSepoliaBaseConfig,
+        blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
+        chainId: 421614,
     },
     // poco-chain native config
     'dev-native': {
