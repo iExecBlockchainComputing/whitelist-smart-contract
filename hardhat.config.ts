@@ -83,7 +83,7 @@ const config: HardhatUserConfig = {
     keep: true, // Keep it for slither
   },
   solidity: {
-    version: '0.8.30',
+    version: '0.8.28',
     settings: {
       optimizer: {
         enabled: true,
