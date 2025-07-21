@@ -74,11 +74,6 @@ const config: HardhatUserConfig = {
           },
       ],
   },
-  //to generate gas report
-  gasReporter: {
-    enabled: true,
-    src: 'contracts',
-  },
   solidity: {
     version: '0.8.30',
     settings: {

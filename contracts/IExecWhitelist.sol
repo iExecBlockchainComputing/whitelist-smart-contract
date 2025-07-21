@@ -34,6 +34,8 @@ contract IExecWhitelist is Ownable {
 
     event KeyPurposeUpdate(bytes32 key, uint256 purpose, bool enabled);
 
+    constructor(address owner) Ownable(owner) {}
+
     // from IERC734
     function keyHasPurpose(
         bytes32 key,
