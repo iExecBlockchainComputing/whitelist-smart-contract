@@ -43,7 +43,7 @@ jobs:
             slug: iExecBlockchainComputing/whitelist-smart-contract
 
       - name: Run static analysis with slither
-        uses: crytic/slither-action@v0.4.0
+        uses: crytic/slither-action@v0.4.1
         with:
           target: "contracts/"
           slither-args: --checklist --markdown-root ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/

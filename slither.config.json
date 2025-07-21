@@ -1,5 +1,4 @@
 {
-    "solc": "0.8.30",
     "solc_remaps": "@=node_modules/@",
     "filter_paths": "(mocks/|node_modules/)",
     "detectors_to_exclude": "pragma,solc-version",
