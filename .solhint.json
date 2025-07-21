@@ -1,4 +1,20 @@
 {
   "extends": ["solhint:recommended"],
-  "plugins": []
+  "plugins": [],
+  "rules": {
+    "compiler-version": [
+      "error",
+      "^0.8.19"
+    ],
+    "func-visibility": [
+      "warn",
+      {
+        "ignoreConstructors": true
+      }
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ]
+  }
 }

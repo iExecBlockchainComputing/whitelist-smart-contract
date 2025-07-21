@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 /******************************************************************************
- * Copyright 2023 IEXEC BLOCKCHAIN TECH                                       *
+ * Copyright 2025 IEXEC BLOCKCHAIN TECH                                       *
  *                                                                            *
  * Licensed under the Apache License, Version 2.0 (the "License");            *
  * you may not use this file except in compliance with the License.           *
@@ -18,8 +18,8 @@
 
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/structs/BitMaps.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {BitMaps} from "@openzeppelin/contracts/utils/structs/BitMaps.sol";
 
 function addrToKey(address a) pure returns (bytes32) {
     return bytes32(uint256(uint160(a)));
