@@ -48,8 +48,8 @@ jobs:
       - name: Run static analysis with slither
         uses: crytic/slither-action@v0.4.0
         with:
-          target: "contracts/"
-          slither-args: --checklist --markdown-root ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/
+          target: "."
+          slither-args: --hardhat-ignore-compile --config-file slither.config.json --checklist --markdown-root ${{ github.server_url }}/${{ github.repository }}/blob/${{ github.sha }}/
           fail-on: none # TODO set this to high or other
           sarif: results.sarif
 
