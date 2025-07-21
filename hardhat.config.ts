@@ -17,7 +17,7 @@ const config: HardhatUserConfig = {
       ...bellecourBase,
       forking: {
         enabled: true,
-        url: 'https://bellecour.iex.ec',
+        url: env.RPC_URL || 'https://bellecour.iex.ec',
       },
     },
     bellecour: {
@@ -49,19 +49,30 @@ const config: HardhatUserConfig = {
   },
   //to verify contract on Blockscout
   etherscan: {
-    apiKey: {
-      bellecour: 'abc',
-    },
-    customChains: [
-      {
-        network: 'bellecour',
-        chainId: 134,
-        urls: {
-          apiURL: 'https://blockscout.bellecour.iex.ec/api',
-          browserURL: 'https://blockscout.bellecour.iex.ec',
-        },
+      apiKey: {
+          bellecour: 'nothing', // a non-empty string is needed by the plugin.
+          avalancheFuji: 'nothing', // a non-empty string is needed by the plugin.
+          arbitrumSepolia: env.ARBISCAN_API_KEY || '',
       },
-    ],
+      customChains: [
+          {
+              network: 'bellecour',
+              chainId: 134,
+              urls: {
+                  apiURL: 'https://blockscout.bellecour.iex.ec/api',
+                  browserURL: 'https://blockscout.bellecour.iex.ec',
+              },
+          },
+          {
+              network: 'avalancheFuji',
+              chainId: 43113,
+              urls: {
+                  // Snowtrace explorer.
+                  apiURL: 'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan/api',
+                  browserURL: 'https://testnet.snowtrace.io/',
+              },
+          },
+      ],
   },
   //to generate gas report
   gasReporter: {
@@ -69,7 +80,7 @@ const config: HardhatUserConfig = {
     src: 'contracts',
   },
   solidity: {
-    version: '0.8.19',
+    version: '0.8.30',
     settings: {
       optimizer: {
         enabled: true,

@@ -1,14 +1,8 @@
 import { buildModule } from '@nomicfoundation/hardhat-ignition/modules';
-import { DATASET_REGISTRY_ADDRESS as defaultDatasetRegistryAddress } from '../../config/config';
-import { env } from '../../config/env';
 
-export default buildModule('DataProtectorModule', (m) => {
-    // Get registry address from environment or default
-    const datasetRegistryAddress = env.DATASET_REGISTRY_ADDRESS || defaultDatasetRegistryAddress;
+export default buildModule('WhitelistModule', (m) => {
+  const whitelist = m.contract('IExecWhitelist');
 
-    // Deploy DataProtector with the registry address as constructor argument
-    const dataProtector = m.contract('DataProtector', [datasetRegistryAddress]);
-
-    // Return the deployed contract
-    return { dataProtector };
+  // Return the deployed contract
+  return { whitelist };
 });
