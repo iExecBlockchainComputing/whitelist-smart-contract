@@ -33,9 +33,6 @@ jobs:
       - name: Check Lint
         run: npm run lint
 
-      - name: Test smart contracts
-        run: npm run test
-
       - name: Run Coverage
         run: npm run coverage #coverage only works on a non-fork hardhat node
 
