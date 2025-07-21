@@ -1,5 +1,4 @@
 import '@nomicfoundation/hardhat-toolbox';
-import 'hardhat-dependency-compiler';
 import { HardhatUserConfig } from 'hardhat/config';
 import { env } from './config/env';
 
@@ -75,15 +74,13 @@ const config: HardhatUserConfig = {
           },
       ],
   },
-  dependencyCompiler: {
-    paths: [
-        '@openzeppelin/contracts/access/Ownable.sol',
-        '@openzeppelin/contracts/utils/structs/BitMaps.sol',
-    ],
-    keep: true, // Keep it for slither
+  //to generate gas report
+  gasReporter: {
+    enabled: true,
+    src: 'contracts',
   },
   solidity: {
-    version: '0.8.28',
+    version: '0.8.19',
     settings: {
       optimizer: {
         enabled: true,
