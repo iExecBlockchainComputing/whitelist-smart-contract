@@ -18,7 +18,7 @@ const config: HardhatUserConfig = {
       ...bellecourBase,
       forking: {
         enabled: true,
-        url: env.RPC_URL || 'https://bellecour.iex.ec',
+        url: 'https://bellecour.iex.ec',
       },
     },
     bellecour: {
