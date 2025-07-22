@@ -28,17 +28,17 @@ const config: HardhatUserConfig = {
     },
     // Add Fuji as a network
     avalancheFuji: {
-        url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
-        accounts: privateKey ? [privateKey] : [],
-        blockGasLimit: 8_000_000,
-        chainId: 43113,
+      url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
+      accounts: privateKey ? [privateKey] : [],
+      blockGasLimit: 8_000_000,
+      chainId: 43113,
     },
     // Add Arbitrum Sepolia as a network
     arbitrumSepolia: {
-        url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
-        accounts: privateKey ? [privateKey] : [],
-        blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
-        chainId: 421614,
+      url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
+      accounts: privateKey ? [privateKey] : [],
+      blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
+      chainId: 421614,
     },
     // poco-chain native config
     'dev-native': {
@@ -77,14 +77,15 @@ const config: HardhatUserConfig = {
   },
   dependencyCompiler: {
     paths: [
-        '@openzeppelin/contracts/access/Ownable.sol',
-        '@openzeppelin/contracts/utils/structs/BitMaps.sol',
+      '@openzeppelin/contracts/access/Ownable.sol',
+      '@openzeppelin/contracts/utils/structs/BitMaps.sol',
     ],
     keep: true, // Keep it for slither
   },
   solidity: {
     version: '0.8.28',
     settings: {
+      viaIR: true,
       optimizer: {
         enabled: true,
         runs: 200,
