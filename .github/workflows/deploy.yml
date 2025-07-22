@@ -52,16 +52,17 @@ jobs:
           # For Deployment
           HARDHAT_IGNITION_CONFIRM_DEPLOYMENT: false
           PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
-          # For Verification
           RPC_URL: ${{ secrets.RPC_URL }}
+        run: |
+            npm run deploy -- --network ${{ inputs.network }} --deployment-id ${{ inputs.network }}
+
+      - name: Verify contracts
+        if: inputs.network != 'hardhat'
+        env:
+          # For Verification
           API_KEY: ${{ secrets.API_KEY }}
           VERIFICATION_API_V2: ${{ vars.VERIFICATION_API_V2  }}
-        run: |
-          if [ "${{ inputs.network }}" != "hardhat" ]; then
-            npm run deploy -- --network ${{ inputs.network }} --verify
-          else
-            npm run deploy -- --network ${{ inputs.network }}
-          fi
+        run: npm run verify -- ${{ inputs.network }}
 
       - name: Save deployment artifacts
         if: inputs.network != 'hardhat'
