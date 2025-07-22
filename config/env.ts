@@ -54,8 +54,8 @@ const envSchema = z.object({
     .optional()
     .or(z.literal('')),
   
-  // Arbiscan API key
-  ARBISCAN_API_KEY: z.string().optional().or(z.literal('')),
+  // API key
+  API_KEY: z.string().optional().or(z.literal('')),
 });
 
 export const env = envSchema.parse(process.env);

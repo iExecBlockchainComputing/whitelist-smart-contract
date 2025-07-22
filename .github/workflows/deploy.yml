@@ -9,6 +9,7 @@ on:
         type: choice
         options:
           - hardhat
+          - bellecour
           - arbitrumSepolia
           - arbitrum
         default: 'hardhat'
@@ -47,8 +48,10 @@ jobs:
 
       - name: Deploy contracts
         env:
+          HARDHAT_IGNITION_CONFIRM_DEPLOYMENT: false
           PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
           RPC_URL: ${{ secrets.RPC_URL }}
+          API_KEY: ${{ secrets.API_KEY }}
           WHITELIST_OWNER: ${{ inputs.whitelist_owner }}
         run: |
           if [ "${{ inputs.network }}" != "hardhat" ]; then
