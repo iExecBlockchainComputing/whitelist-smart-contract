@@ -1,5 +1,6 @@
 import { ethers } from 'hardhat';
 import { saveSmartContractAddress } from '../utils/utils';
+import { env } from '../config/env';
 
 async function main() {
   console.log('Starting deployment...');
@@ -7,7 +8,9 @@ async function main() {
   console.log('Deploying contracts with the account:', deployer.address);
   // pass the registry instance to the deploy method
   const IExecWhitelist = await ethers.getContractFactory('IExecWhitelist');
-  const iExecWhitelist = await IExecWhitelist.deploy();
+  const iExecWhitelist = await IExecWhitelist.deploy(
+    env.WHITELIST_OWNER || deployer.address
+  );
   const deploymentTransaction = iExecWhitelist.deploymentTransaction();
   const receipt = await deploymentTransaction?.wait();
   console.log('Gas used: ', receipt?.gasUsed.toString());

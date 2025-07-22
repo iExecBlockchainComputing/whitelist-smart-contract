@@ -8,10 +8,17 @@ describe('IExecWhitelist', function () {
     // Create an instance of DatasetRegistry using the address
     const IExecWhitelistFactory =
       await ethers.getContractFactory('IExecWhitelist');
-    const iExecWhitelist = await IExecWhitelistFactory.deploy();
+    const iExecWhitelist = await IExecWhitelistFactory.deploy(owner.address);
     await iExecWhitelist.deploymentTransaction()?.wait();
     return { iExecWhitelist, owner, addr1, addr2 };
   }
+
+  describe('Deployment', () => {
+    it('should set correct owner', async () => {
+      const { iExecWhitelist, owner } = await loadFixture(deploySCFixture);
+      expect(await iExecWhitelist.owner()).to.equal(owner.address);
+    });
+  });
 
   describe('Whitelisting', () => {
     it('should allow the owner to add a dapp address to the iExecWhitelist', async () => {
@@ -33,7 +40,12 @@ describe('IExecWhitelist', function () {
         iExecWhitelist
           .connect(addr1)
           .addResourceToWhitelist(await addr2.getAddress())
-      ).to.be.revertedWith('Ownable: caller is not the owner');
+      )
+        .to.be.revertedWithCustomError(
+          iExecWhitelist,
+          'OwnableUnauthorizedAccount'
+        )
+        .withArgs(await addr1.getAddress());
     });
     it('should allow the owner to remove a dapp address from the iExecWhitelist', async () => {
       const { iExecWhitelist, owner, addr1 } =
@@ -60,7 +72,12 @@ describe('IExecWhitelist', function () {
         iExecWhitelist
           .connect(addr1)
           .removeResourceFromWhitelist(await addr1.getAddress())
-      ).to.be.revertedWith('Ownable: caller is not the owner');
+      )
+        .to.be.revertedWithCustomError(
+          iExecWhitelist,
+          'OwnableUnauthorizedAccount'
+        )
+        .withArgs(await addr1.getAddress());
     });
   });
 

@@ -10,4 +10,5 @@ typechain-types
 cache
 artifacts
 
+/contracts/hardhat-dependency-compiler
 .smart-contract-address

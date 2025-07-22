@@ -18,8 +18,8 @@
 
 pragma solidity ^0.8.19;
 
-import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/utils/structs/BitMaps.sol";
+import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
+import {BitMaps} from "@openzeppelin/contracts/utils/structs/BitMaps.sol";
 
 function addrToKey(address a) pure returns (bytes32) {
     return bytes32(uint256(uint160(a)));
@@ -33,6 +33,8 @@ contract IExecWhitelist is Ownable {
     mapping(bytes32 => BitMaps.BitMap) internal _store;
 
     event KeyPurposeUpdate(bytes32 key, uint256 purpose, bool enabled);
+
+    constructor(address owner) Ownable(owner) {}
 
     // from IERC734
     function keyHasPurpose(
