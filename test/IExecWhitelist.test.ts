@@ -13,6 +13,13 @@ describe('IExecWhitelist', function () {
     return { iExecWhitelist, owner, addr1, addr2 };
   }
 
+  describe('Deployment', () => {
+    it('should set correct owner', async () => {
+      const { iExecWhitelist, owner } = await loadFixture(deploySCFixture);
+      expect(await iExecWhitelist.owner()).to.equal(owner.address);
+    });
+  });
+
   describe('Whitelisting', () => {
     it('should allow the owner to add a dapp address to the iExecWhitelist', async () => {
       const { iExecWhitelist, owner, addr1 } =
