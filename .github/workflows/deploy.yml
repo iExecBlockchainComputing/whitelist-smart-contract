@@ -48,11 +48,14 @@ jobs:
 
       - name: Deploy contracts
         env:
+          WHITELIST_OWNER: ${{ inputs.whitelist_owner }}
+          # For Deployment
           HARDHAT_IGNITION_CONFIRM_DEPLOYMENT: false
           PRIVATE_KEY: ${{ secrets.DEPLOYER_PRIVATE_KEY }}
+          # For Verification
           RPC_URL: ${{ secrets.RPC_URL }}
           API_KEY: ${{ secrets.API_KEY }}
-          WHITELIST_OWNER: ${{ inputs.whitelist_owner }}
+          VERIFICATION_API_V2: ${{ vars.VERIFICATION_API_V2  }}
         run: |
           if [ "${{ inputs.network }}" != "hardhat" ]; then
             npm run deploy -- --network ${{ inputs.network }} --verify

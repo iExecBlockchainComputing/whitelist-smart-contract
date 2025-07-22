@@ -8,6 +8,7 @@
     "test": "hardhat test",
     "coverage": "hardhat coverage",
     "deploy": "hardhat ignition deploy ignition/modules/Whitelist.ts",
+    "verify": "hardhat ignition verify --include-unrelated-contracts",
     "addResourceToWhitelist": "hardhat run scripts/addResourceToWhitelist.ts",
     "removeResourceFromWhitelist": "hardhat run scripts/removeResourceFromWhitelist.ts",
     "transferOwnership": "hardhat run scripts/transferOwnership.ts",

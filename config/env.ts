@@ -18,7 +18,7 @@ const envSchema = z.object({
     .regex(addressRegex, 'Invalid Ethereum address format')
     .optional()
     .or(z.literal('')),
-  
+
   // Contract address (override)
   CONTRACT_ADDRESS: z
     .string()
@@ -53,9 +53,19 @@ const envSchema = z.object({
     .url('RPC_URL must be a valid URL')
     .optional()
     .or(z.literal('')),
-  
+
   // API key
   API_KEY: z.string().optional().or(z.literal('')),
+
+  // Whether to use API V2 verification format
+  VERIFICATION_API_V2: z
+    .string()
+    .optional()
+    .default('true')
+    .refine((val) => val === 'true' || val === 'false', {
+      message: 'VERIFICATION_API_V2 must be "true" or "false"',
+    })
+    .transform((val) => val === 'true'),
 });
 
 export const env = envSchema.parse(process.env);
