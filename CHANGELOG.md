@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/iExecBlockchainComputing/whitelist-smart-contract/compare/v1.0.0...v1.0.1) (2025-07-23)
+
+
+### 🧰 Other
+
+* update changelog and README for clarity and consistency ([b671345](https://github.com/iExecBlockchainComputing/whitelist-smart-contract/commit/b6713458de9626e9cb1459e4dd4860f0fe71fad6))
+* update changelog and README for clarity and consistency ([#24](https://github.com/iExecBlockchainComputing/whitelist-smart-contract/issues/24)) ([dd64f57](https://github.com/iExecBlockchainComputing/whitelist-smart-contract/commit/dd64f57109c070cf5e9408550c9718c3f1fbda0e))
+
 ## [1.0.0] - 2025-07-23
 
 ### Added
