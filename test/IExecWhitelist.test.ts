@@ -1,14 +1,15 @@
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
 import { loadFixture } from '@nomicfoundation/hardhat-toolbox/network-helpers';
+import { IExecWhitelist__factory } from '../typechain-types';
 
 describe('IExecWhitelist', function () {
   async function deploySCFixture() {
     const [owner, addr1, addr2] = await ethers.getSigners();
-    // Create an instance of DatasetRegistry using the address
-    const IExecWhitelistFactory =
-      await ethers.getContractFactory('IExecWhitelist');
-    const iExecWhitelist = await IExecWhitelistFactory.deploy(owner.address);
+    // Deploy the contract using IExecWhitelist__factory
+    const iExecWhitelist = await new IExecWhitelist__factory(owner).deploy(
+      owner.address
+    );
     await iExecWhitelist.deploymentTransaction()?.wait();
     return { iExecWhitelist, owner, addr1, addr2 };
   }
