@@ -14,8 +14,8 @@ on:
           - arbitrum
         default: 'hardhat'
       whitelist_owner:
-        description: 'Whitelist contract owner address (optional - defaults to deployer)'
-        required: false
+        description: 'Whitelist contract owner address'
+        required: true
         type: string
 
 jobs:
@@ -63,7 +63,7 @@ jobs:
           # For Verification
           EXPLORER_API_KEY: ${{ secrets.EXPLORER_API_KEY }}
           IS_VERIFICATION_API_V2: ${{ vars.IS_VERIFICATION_API_V2  }}
-        run: npm run verify -- ${{ inputs.network }}
+        run: sleep 10 && npm run verify -- ${{ inputs.network }}
 
       - name: Log verification result
         if: inputs.network != 'hardhat'
