@@ -50,9 +50,13 @@ const config: HardhatUserConfig = {
   },
   //to verify contract on Blockscout
   etherscan: {
-    apiKey: {
-      bellecour: 'abc',
-    },
+    apiKey: env.IS_VERIFICATION_API_V2
+      ? env.EXPLORER_API_KEY
+      : {
+          bellecour: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
+          avalancheFuji: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
+          arbitrumSepolia: env.EXPLORER_API_KEY || '',
+        },
     customChains: [
       {
         network: 'bellecour',
@@ -60,6 +64,16 @@ const config: HardhatUserConfig = {
         urls: {
           apiURL: 'https://blockscout.bellecour.iex.ec/api',
           browserURL: 'https://blockscout.bellecour.iex.ec',
+        },
+      },
+      {
+        network: 'avalancheFuji',
+        chainId: 43113,
+        urls: {
+          // Snowtrace explorer.
+          apiURL:
+            'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan/api',
+          browserURL: 'https://testnet.snowtrace.io/',
         },
       },
     ],

@@ -10,7 +10,7 @@
     "esModuleInterop": true,
     "moduleResolution": "node"
   },
-  "exclude": ["dist", "node_modules"],
-  "include": ["./test", "./src", "./scripts", "./typechain-types","./utils","./config"],
+  "include": ["config/**/*", "ignition/**/*", "test/**/*", "scripts/**/*", "utils/**/*"],
+  "exclude": ["node_modules", "typechain-types"],
   "files": ["./hardhat.config.ts"]
 }
