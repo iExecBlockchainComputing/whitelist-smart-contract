@@ -11,7 +11,7 @@
 ### Changed
 
 - **[BREAKING]** Migrated from OpenZeppelin contracts v4 to v5
-- **[BREAKING]** Updated Hardhat and related dependencies
+- Updated Hardhat and related dependencies
 - Improved test structure using TypeChain factories
 
 ### Removed
