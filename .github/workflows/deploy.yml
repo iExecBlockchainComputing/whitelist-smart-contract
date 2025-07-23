@@ -14,8 +14,8 @@ on:
           - arbitrum
         default: 'hardhat'
       whitelist_owner:
-        description: 'Whitelist contract owner address (optional - defaults to deployer)'
-        required: false
+        description: 'Whitelist contract owner address'
+        required: true
         type: string
 
 jobs:
