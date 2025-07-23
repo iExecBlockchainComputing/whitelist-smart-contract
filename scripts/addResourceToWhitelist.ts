@@ -1,5 +1,5 @@
 import { ethers } from 'hardhat';
-import { IExecWhitelist } from '../typechain-types/contracts/IExecWhitelist.js';
+import { IExecWhitelist__factory } from '../typechain-types';
 
 async function main() {
   const { CONTRACT_ADDRESS, ADDRESS_TO_ADD } = process.env;
@@ -15,11 +15,7 @@ async function main() {
   const [signer] = await ethers.getSigners();
 
   // Get a contract instance
-  const IExecWhitelistFactory =
-    await ethers.getContractFactory('IExecWhitelist');
-  const whitelist = IExecWhitelistFactory.attach(CONTRACT_ADDRESS).connect(
-    signer
-  ) as IExecWhitelist;
+  const whitelist = IExecWhitelist__factory.connect(CONTRACT_ADDRESS, signer);
 
   // Call the addResourceToWhitelist function
   const tx = await whitelist.addResourceToWhitelist(ADDRESS_TO_ADD);

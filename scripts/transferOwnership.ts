@@ -1,5 +1,5 @@
 import { ethers } from 'hardhat';
-import { IExecWhitelist } from '../typechain-types/contracts/IExecWhitelist.js';
+import { IExecWhitelist__factory } from '../typechain-types';
 
 async function main() {
   const { CONTRACT_ADDRESS, NEW_OWNER_ADDRESS } = process.env;
@@ -15,13 +15,7 @@ async function main() {
   const [signer] = await ethers.getSigners();
 
   // Get a contract instance
-  const IExecWhitelistFactory = await ethers.getContractFactory(
-    'IExecWhitelist',
-    signer
-  );
-  const whitelist = IExecWhitelistFactory.attach(
-    CONTRACT_ADDRESS
-  ) as IExecWhitelist;
+  const whitelist = IExecWhitelist__factory.connect(CONTRACT_ADDRESS, signer);
 
   // Call the transferOwnership function
   const tx = await whitelist.transferOwnership(NEW_OWNER_ADDRESS);
