@@ -26,16 +26,19 @@ deploys a `IExecWhitelist` contract on bellecour, stores the deployed address in
 Required environment variables:
 
 - `PRIVATE_KEY`: deployer private key
+- `IS_VERIFICATION_API_V2`: Set to `false` if you are not verifying the contract on the Etherscan explorer.
 
 ```bash
-npm run deploy
+npm run deploy -- --network arbitrumSepolia --deployment-id arbitrumSepolia
 ```
 
 > NB: you may want to verify the deployed contract code on the block explorer
 >
 > ```bash
-> npm run verify -- --network bellecour $(cat .smart-contract-address)
+> npm run verify -- arbitrumSepolia
 > ```
+>
+> To verify a contract before deployment, you should set the `deployment-id` as input
 
 ### transferOwnership
 

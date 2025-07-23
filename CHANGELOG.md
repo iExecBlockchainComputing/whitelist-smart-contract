@@ -5,7 +5,7 @@
 ### Added
 
 - GitHub Actions CI/CD pipeline
-- Hardhat Ignition deployment system
+- Hardhat Ignition deployment script
 - TypeChain support for improved type safety
 
 ### Changed
@@ -16,7 +16,7 @@
 
 ### Removed
 
-- Drone CI configuration
+- Drone CI
 
 ## [0.2.1]
 
