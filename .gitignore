@@ -9,8 +9,8 @@ typechain-types
 # Hardhat files
 cache
 artifacts
-**/contracts/hardhat-dependency-compiler
+/contracts/hardhat-dependency-compiler
 
 # Deployment files
-**/deployments/chain-31337
+/contracts/deployments
 .smart-contract-address

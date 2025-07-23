@@ -61,8 +61,8 @@ jobs:
         continue-on-error: true
         env:
           # For Verification
-          API_KEY: ${{ secrets.API_KEY }}
-          VERIFICATION_API_V2: ${{ vars.VERIFICATION_API_V2  }}
+          EXPLORER_API_KEY: ${{ secrets.EXPLORER_API_KEY }}
+          IS_VERIFICATION_API_V2: ${{ vars.IS_VERIFICATION_API_V2  }}
         run: npm run verify -- ${{ inputs.network }}
 
       - name: Log verification result

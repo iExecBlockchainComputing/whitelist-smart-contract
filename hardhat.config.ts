@@ -50,12 +50,12 @@ const config: HardhatUserConfig = {
   },
   //to verify contract on Blockscout
   etherscan: {
-    apiKey: env.VERIFICATION_API_V2
-      ? env.API_KEY
+    apiKey: env.IS_VERIFICATION_API_V2
+      ? env.EXPLORER_API_KEY
       : {
-          bellecour: env.API_KEY || 'nothing', // a non-empty string is needed by the plugin.
-          avalancheFuji: env.API_KEY || 'nothing', // a non-empty string is needed by the plugin.
-          arbitrumSepolia: env.API_KEY || '',
+          bellecour: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
+          avalancheFuji: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
+          arbitrumSepolia: env.EXPLORER_API_KEY || '',
         },
     customChains: [
       {

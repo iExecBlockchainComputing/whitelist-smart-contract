@@ -55,15 +55,15 @@ const envSchema = z.object({
     .or(z.literal('')),
 
   // API key
-  API_KEY: z.string().optional().or(z.literal('')),
+  EXPLORER_API_KEY: z.string().optional().or(z.literal('')),
 
   // Whether to use API V2 verification format
-  VERIFICATION_API_V2: z
+  IS_VERIFICATION_API_V2: z
     .string()
     .optional()
     .default('true')
     .refine((val) => val === 'true' || val === 'false', {
-      message: 'VERIFICATION_API_V2 must be "true" or "false"',
+      message: 'IS_VERIFICATION_API_V2 must be "true" or "false"',
     })
     .transform((val) => val === 'true'),
 });
