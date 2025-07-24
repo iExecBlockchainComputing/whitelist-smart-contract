@@ -26,19 +26,25 @@ const config: HardhatUserConfig = {
       url: 'https://bellecour.iex.ec',
       accounts: privateKey ? [privateKey] : [],
     },
-    // Add Fuji as a network
+    // Avalanche Networks
     avalancheFuji: {
       url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
       accounts: privateKey ? [privateKey] : [],
       blockGasLimit: 8_000_000,
       chainId: 43113,
     },
-    // Add Arbitrum Sepolia as a network
+    // Arbitrum Networks
     arbitrumSepolia: {
       url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
       accounts: privateKey ? [privateKey] : [],
       blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
       chainId: 421614,
+    },
+    arbitrum: {
+      url: env.RPC_URL || 'https://arb1.arbitrum.io/rpc',
+      accounts: privateKey ? [privateKey] : [],
+      blockGasLimit: 30_000_000, // Arbitrum has higher block gas limits
+      chainId: 42161,
     },
     // poco-chain native config
     'dev-native': {
