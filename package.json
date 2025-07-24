@@ -1,6 +1,6 @@
 {
   "name": "whitelist-smart-contract",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Whitelist smart contract to allow developers to not resign a sell order every time there's a new web3mail dapp being deployed.",
   "main": "index.ts",
   "scripts": {
