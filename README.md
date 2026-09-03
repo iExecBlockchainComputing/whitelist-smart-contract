@@ -1,6 +1,6 @@
 # `IExecWhitelist` Smart contract
 
-This project is a smart contract that will be deployed on bellecour blockchain to allow whitelisting next dapp versions without asking the end-user to resign an other grant access (or a dataset sell order) to the desired dapp.
+This project is a smart contract that allows whitelisting next dapp versions without asking the end-user to resign an other grant access (or a dataset sell order) to the desired dapp.
 
 ## Install
 
@@ -21,12 +21,11 @@ npm run coverage
 
 ### deploy
 
-deploys a `IExecWhitelist` contract on bellecour, stores the deployed address in `.smart-contract-address`
+deploys a `IExecWhitelist` contract on the target network, stores the deployed address in `.smart-contract-address`
 
 Required environment variables:
 
 - `PRIVATE_KEY`: deployer private key
-- `IS_VERIFICATION_API_V2`: Set to `false` if you are not verifying the contract on the Etherscan explorer.
 
 ```bash
 npm run deploy -- --network arbitrumSepolia --deployment-id arbitrumSepolia
@@ -42,7 +41,7 @@ npm run deploy -- --network arbitrumSepolia --deployment-id arbitrumSepolia
 
 ### transferOwnership
 
-transfer the ownership of an `IExecWhitelist` contract deployed on bellecour to a new owner
+transfer the ownership of an `IExecWhitelist` contract to a new owner
 
 Required environment variables:
 
@@ -56,7 +55,7 @@ npm run transferOwnership
 
 ### addResourceToWhitelist
 
-add an address to an `IExecWhitelist` contract deployed on bellecour
+add an address to an `IExecWhitelist` contract
 
 Required environment variables:
 
@@ -70,7 +69,7 @@ npm run addResourceToWhitelist
 
 ### removeResourceFromWhitelist
 
-remove an address from an `IExecWhitelist` contract deployed on bellecour
+remove an address from an `IExecWhitelist` contract
 
 Required environment variables:
 

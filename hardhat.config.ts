@@ -5,34 +5,8 @@ import { env } from './config/env';
 
 const privateKey = env.PRIVATE_KEY;
 
-const bellecourBase = {
-  chainId: 134,
-  gasPrice: 0,
-  blockGasLimit: 6_700_000,
-  hardfork: 'berlin',
-};
-
 const config: HardhatUserConfig = {
   networks: {
-    hardhat: {
-      ...bellecourBase,
-      forking: {
-        enabled: true,
-        url: 'https://bellecour.iex.ec',
-      },
-    },
-    bellecour: {
-      ...bellecourBase,
-      url: 'https://bellecour.iex.ec',
-      accounts: privateKey ? [privateKey] : [],
-    },
-    // Avalanche Networks
-    avalancheFuji: {
-      url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
-      accounts: privateKey ? [privateKey] : [],
-      blockGasLimit: 8_000_000,
-      chainId: 43113,
-    },
     // Arbitrum Networks
     arbitrumSepolia: {
       url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
@@ -56,33 +30,7 @@ const config: HardhatUserConfig = {
   },
   //to verify contract on Blockscout
   etherscan: {
-    apiKey: env.IS_VERIFICATION_API_V2
-      ? env.EXPLORER_API_KEY
-      : {
-          bellecour: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
-          avalancheFuji: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
-          arbitrumSepolia: env.EXPLORER_API_KEY || '',
-        },
-    customChains: [
-      {
-        network: 'bellecour',
-        chainId: 134,
-        urls: {
-          apiURL: 'https://blockscout.bellecour.iex.ec/api',
-          browserURL: 'https://blockscout.bellecour.iex.ec',
-        },
-      },
-      {
-        network: 'avalancheFuji',
-        chainId: 43113,
-        urls: {
-          // Snowtrace explorer.
-          apiURL:
-            'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan/api',
-          browserURL: 'https://testnet.snowtrace.io/',
-        },
-      },
-    ],
+    apiKey: env.EXPLORER_API_KEY,
   },
   dependencyCompiler: {
     paths: [
