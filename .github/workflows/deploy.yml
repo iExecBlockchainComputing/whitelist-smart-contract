@@ -9,7 +9,6 @@ on:
         type: choice
         options:
           - hardhat
-          - bellecour
           - arbitrumSepolia
           - arbitrum
         default: 'hardhat'
