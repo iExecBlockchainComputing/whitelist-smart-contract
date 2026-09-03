@@ -26,7 +26,6 @@ deploys a `IExecWhitelist` contract on the target network, stores the deployed a
 Required environment variables:
 
 - `PRIVATE_KEY`: deployer private key
-- `IS_VERIFICATION_API_V2`: Set to `false` if you are not verifying the contract on the Etherscan explorer.
 
 ```bash
 npm run deploy -- --network arbitrumSepolia --deployment-id arbitrumSepolia

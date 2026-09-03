@@ -7,13 +7,6 @@ const privateKey = env.PRIVATE_KEY;
 
 const config: HardhatUserConfig = {
   networks: {
-    // Avalanche Networks
-    avalancheFuji: {
-      url: env.RPC_URL || 'https://api.avax-test.network/ext/bc/C/rpc',
-      accounts: privateKey ? [privateKey] : [],
-      blockGasLimit: 8_000_000,
-      chainId: 43113,
-    },
     // Arbitrum Networks
     arbitrumSepolia: {
       url: env.RPC_URL || 'https://sepolia-rollup.arbitrum.io/rpc',
@@ -37,24 +30,7 @@ const config: HardhatUserConfig = {
   },
   //to verify contract on Blockscout
   etherscan: {
-    apiKey: env.IS_VERIFICATION_API_V2
-      ? env.EXPLORER_API_KEY
-      : {
-          avalancheFuji: env.EXPLORER_API_KEY || 'nothing', // a non-empty string is needed by the plugin.
-          arbitrumSepolia: env.EXPLORER_API_KEY || '',
-        },
-    customChains: [
-      {
-        network: 'avalancheFuji',
-        chainId: 43113,
-        urls: {
-          // Snowtrace explorer.
-          apiURL:
-            'https://api.routescan.io/v2/network/testnet/evm/43113/etherscan/api',
-          browserURL: 'https://testnet.snowtrace.io/',
-        },
-      },
-    ],
+    apiKey: env.EXPLORER_API_KEY,
   },
   dependencyCompiler: {
     paths: [
